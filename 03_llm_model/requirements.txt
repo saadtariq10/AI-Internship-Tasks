@@ -1,0 +1,243 @@
+AuthForms.js:
+import React from 'react';
+import './AuthForms.css';
+
+function AuthForm({ isLogin, goHome, toggleForms }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isLogin) {
+      window.location.href = '/Dashboard'; // Adjust the path if necessary
+    } else {
+      // Add signup logic here if needed
+    }
+  };
+
+  return (
+    <div className="container">
+      <button className="close-btn" onClick={goHome}>×</button>
+      <h2>{isLogin ? 'Welcome Back!' : 'Create Your Account'}</h2>
+      <p>{isLogin ? 'Please login to continue.' : 'Join us and start your journey!'}</p>
+      <form onSubmit={handleSubmit}>
+        {!isLogin && (
+          <div className="form-group">
+            <label htmlFor="full-name">Full Name</label>
+            <input type="text" id="full-name" placeholder="Enter your full name" required />
+          </div>
+        )}
+        <div className="form-group">
+          <label htmlFor={isLogin ? 'email' : 'signup-email'}>Email Address</label>
+          <input
+            type="email"
+            id={isLogin ? 'email' : 'signup-email'}
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor={isLogin ? 'password' : 'signup-password'}>Password</label>
+          <input
+            type="password"
+            id={isLogin ? 'password' : 'signup-password'}
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        {!isLogin && (
+          <div className="form-group">
+            <label htmlFor="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+        )}
+        {isLogin && (
+          <div className="checkbox-group">
+            <input type="checkbox" id="remember-me" />
+            <label htmlFor="remember-me">Remember Me</label>
+          </div>
+        )}
+        {!isLogin && (
+          <div className="checkbox-group">
+            <input type="checkbox" id="terms" required />
+            <label htmlFor="terms">I agree to the Terms and Conditions</label>
+          </div>
+        )}
+        {isLogin && (
+          <div className="forgot-password">
+            <a href="#">Forgot your password?</a>
+          </div>
+        )}
+        <button className="btn" type="submit">
+          {isLogin ? 'Login' : 'Sign Up'}
+        </button>
+        <div className="alt-option">
+          {isLogin
+            ? "Don't have an account? "
+            : 'Already have an account? '}
+          <a href="#" onClick={toggleForms}>
+            {isLogin ? 'Sign up' : 'Log in'}
+          </a>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default AuthForm;
+
+
+
+
+
+AuthForms.css:
+/* Common Container Styling */
+.container {
+  background-color: rgba(0, 0, 0, 0.397);
+  padding: 3rem;
+  max-width: 500px; /* Accommodates both login and signup forms */
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  backdrop-filter: blur(5px);
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 35px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Headings and Text */
+h2 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+p {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #D1D9E6;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0dddb4;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.checkbox-group input {
+  margin-right: 0.5rem;
+}
+
+.checkbox-group label {
+  font-size: 14px;
+  color: #ffffff;
+}
+
+/* Forgot Password Link (Login Specific) */
+.forgot-password {
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+
+.forgot-password a {
+  color: #0dddb4;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* Button Styling */
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #0dddb4;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* For icons if needed */
+}
+
+.btn:hover {
+  background-color: #00ffcc;
+  transform: scale(1.05);
+}
+
+/* Alternative Option Link Styling */
+.alt-option {
+  text-align: center;
+  margin-top: 1rem;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.alt-option a {
+  color: #1abc9c;
+  text-decoration: none;
+}
+
+.alt-option a:hover {
+  text-decoration: underline;
+}
+
+/* Link Button (Signup Specific) */
+.link-button {
+  background: none;
+  border: none;
+  color: #1abc9c;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+
+.link-button:hover {
+  color: #0dddb4;
+}
