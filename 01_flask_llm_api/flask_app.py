@@ -21,7 +21,7 @@
 #         prompt = user_input['input']
 
 #         # Call the LLM API (e.g., Hugging Face)
-#         api_key = "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"  # Replace with your key
+#         api_key = "your-api-key"  # Replace with your key
 #         api_url = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-1B"
 #         headers = {
 #             "Authorization": f"Bearer {api_key}",
@@ -79,7 +79,7 @@ def generate_response():
         prompt = user_input['input']
 
         # Call the LLM API (e.g., Hugging Face)
-        api_key = "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"  
+        api_key = "your-api-key"  
         api_url = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-1B"
         headers = {
             "Authorization": f"Bearer {api_key}",
@@ -110,7 +110,7 @@ def generate_from_ui():
             return render_template('index.html', error="Please enter some text.")
 
         # Call the LLM API
-        api_key = "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" 
+        api_key = "your-api-key" 
         api_url = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-1B"
         headers = {
             "Authorization": f"Bearer {api_key}",
